@@ -233,4 +233,3 @@ def append_to_file(line, file):
     """
     with open(file, "a") as read_files_txt:
         read_files_txt.write(f"{line}\n")
-
