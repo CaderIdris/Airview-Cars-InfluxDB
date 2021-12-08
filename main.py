@@ -89,8 +89,16 @@ if __name__ == "__main__":
     # Debug stats
     if config_json["Settings"]["Debug Stats"]:
         debug_stats(config_json)
+    fancy_print("", form="LINE")
 
     # Main loop
     for car in config_json["Settings"]["Cars"]:
-        pass
+        fancy_print(f"Importing measurements from {car}")
+        files_path = f"{config_json['Settings']['File Path']}/{car}/"
+        files_dict = unread_files(files_path, f"{car}.txt", return_stats=True)
+        fancy_print(f"{files_dict['Total Files']} available")
+        fancy_print(f"{files_dict['Read Files']} already read")
+        for airview_file in files_dict["Unread File List"]:
+            pass
+        
 
