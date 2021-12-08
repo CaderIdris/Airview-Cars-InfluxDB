@@ -1,0 +1,124 @@
+
+{
+	"Devices": {
+		"1": "Palas Fidas100",
+		"2": "Naneos Partector",
+		"3": "LiCor Li7200RS",
+		"4": "Echotech Serinus40",
+		"5": "Magee Scientific AE33",
+		"6": "2bTechnologies Model 211-G",
+		"7": "Aerodyne CAPSNO2",
+		"8": "ThermoScientific PDR1500",
+		"9": "GlobalSat G-Star IV"
+	},
+	"Status": {
+		"8 Nibble Hex": {
+			"1": {
+				"Trigger": "1",
+				"16": "Sensor Flow Error",
+				"17": "Particle Coincidence",
+				"18": "Suction Pump Error",
+				"19": "Weather Station Error",
+				"20": "IADS error",
+				"21": "Calibration",
+				"22": "LED Temperature",
+				"23": "Operating Manually"
+			},
+			"2": {
+				"Trigger": "1",
+				"0": "Pulse Low Error",
+				"1": "Pulse High Error",
+				"2": "High RH",
+				"3": "Electrometer Offset High",
+				"4": "Flow Low",
+				"5": "Buffer Overflow",
+				"6": "SD Card missing",
+				"7": "Instrument Calibrating"
+			},
+			"3": {
+				"Trigger": "0",
+				"4": "Sync Error",
+				"5": "Optical Wheel At Incorrect Speed",
+				"6": "Detector Temperature Fault",
+				"7": "Chopper Wheel Temperature Fault",
+				"8": "Differential Pressure Fault",
+				"9": "Aux Input Fault",
+				"10": "T Inlet Thermocouple Fault",
+				"11": "T Outlet Thermocouple Fault"
+			},
+			"4": {
+				"Trigger": "1",
+				"8": "Reference Voltage Failure",
+				"9": "Cell Temperature Failure",
+				"10": "Cooler Failure",
+				"11": "Converter Failure",
+				"12": "Correlation Wheel Failure",
+				"13": "Lamp Source Failure",
+				"14": "Flow Fault",
+				"15": "Any System Error",
+				"16": "Currently in Warmup Process",
+				"17": "Volumetric Units",
+				"18": "Performing a Background",
+				"19": "Currently in Span Mode",
+				"20": "Currently in Zero Mode",
+				"21": "Out of Service",
+				"22": "High Voltage Failure",
+				"23": "System Power Failure"
+			},
+			"5": {
+				"Trigger": "1",
+				"2": "Flow Fault",
+				"5": "LED Fault",
+				"6": "Chamber Fault",
+				"7": "Filter Low/Saturated",
+				"13": "External Device Fault",
+				"14": "Auto Clean Air Test Fault",
+				"15": "CF Card Fault",
+				"16": "Database Size Warning"
+			},
+			"6": {
+				"Trigger": "1",
+				"18": "Scrubber Temperature Low",
+				"19": "Scrubber Temperature High",
+				"28": "Cell B Flow Low",
+				"29": "Cell B Flow High",
+				"30": "Cell A Flow Low",
+				"31": "Cell A Flow High"
+			}
+				
+		},
+		"5 Digit Quinary": {
+			"7": {
+				"0": {
+					"0": "Pump Off, No Filter",
+					"1": "Pump On, No Filter",
+					"2": "Pump Off, Filter In",
+					"3": "Pump On, Filter In"
+				    },
+				"1": {
+					"0": "Normal Operation - No Baseline",
+					"1": "Baseline On - Flush Period",
+					"2": "Baseline On - Measurement Period"
+				    },
+				"2": {
+					"0": "LED is On",
+					"1": "LED is Off"
+				    },
+				"3": {
+					"0": "NO2 Monitor",
+					"1": "Gas Phase Absorption",
+					"2": "Aerosol Extinction",
+					"3": "Single Scattering Albedo Monitor",
+					"4": "Multi-cell Monitor"
+				    },
+				"4": {
+					"0": "Blue (450 nm)",
+					"1": "Green (530 nm)",
+					"2": "Red (630 nm)",
+					"3": "Far Red (660 nm)",
+					"4": "Near IR (760 nm)"
+				}
+			}
+		}
+	}
+}

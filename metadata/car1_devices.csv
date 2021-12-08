@@ -1,0 +1,9 @@
+1,Palas,Fidas100,9732,1,Serial,{"Serial":{"Baud rate":"115200","Data bits":"8","Stop bits":"1","Parity":"none","Port":"starTech4-4"}}
+2,Naneos,Partector,24B1017176,1,Serial,{'Serial': {'Baud rate': '9600', 'Data bits': '8', 'Stop bits': '1', 'Parity': 'none', 'Port': 'ttyACM0'}}
+3,LiCor,Li7200RS,72H-0898,1,Ethernet,{'Ethernet': {'IP address': '192.168.1.95', 'Port': '7200'}, 'Serial': {'Baud rate': '57600', 'Data bits': '8', 'Stop bits': '1', 'Parity': 'none', 'Port': 'ttyUSB0'}}
+4,Ecotech,Serinus40,18-0135,1,Ethernet,{"Ethernet":{"IP address":"192.168.1.40","Port":"32783","Address":"40"},"Serial":{"Baud rate":"38400","Data bits":"8","Stop bits":"1","Parity":"none","Port":"ttyUSB0","Address":"40"}}
+5,Magee Scientific,AE33,AE33-S07-00715,1,Serial,{"Ethernet":{"IP address":"192.168.1.33","Port":"8002"},"Serial":{"Baud rate":"115200","Data bits":"8","Stop bits":"1","Parity":"none","Port":"starTech4-3"}}
+6,2BTechnologies,Model 211-G,1001G,1,Serial stream,{"Serial stream":{"Baud rate":"19200","Data bits":"8","Stop bits":"1","Parity":"none","Port":"starTech4-1","Transmission frequency":"2"}}
+7,Aerodyne,CAPSNO2,118005,1,Ethernet stream,{"Serial stream":{"Baud rate":"9600","Data bits":"8","Stop bits":"1","Parity":"none","Port":"ttyUSB0","Transmission frequency":1},"Ethernet stream":{"IP address":"192.168.1.20","Port":"9997","Transmission frequency":"1"}}
+8,ThermoScientific,PDR1500,CM18122008,1,Serial,{"Serial":{"Baud rate":"19200","Data bits":"8","Stop bits":"1","Parity":"none","Port":"starTech4-2"}}
+9,GlobalSat,G-star IV,S4U0117421,1,Serial stream,{"Serial stream":{"Baud rate":"4800","Data bits":"8","Stop bits":"1","Parity":"none","Port":"gstariv","Transmission frequency":"1"}}
