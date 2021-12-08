@@ -1,0 +1,13 @@
+{
+	"Influx": {
+		"Bucket": "",
+		"IP": "",
+		"Port": "",
+		"Token": "",
+		"Organisation": ""
+	},
+	"Settings": {
+		"File Path": "",
+		"Cars": ["27522", "27533"]
+	}	
+}
