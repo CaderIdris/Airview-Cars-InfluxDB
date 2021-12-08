@@ -8,6 +8,7 @@
 	},
 	"Settings": {
 		"File Path": "",
-		"Cars": ["27522", "27533"]
+		"Cars": ["27522", "27533"],
+		"Debug Stats": true
 	}	
 }
