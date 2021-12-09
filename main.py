@@ -25,13 +25,15 @@ __author__ = "Idris Hayward"
 __copyright__ = "2021, University of Surrey & National Physical Laboratory"
 __credits__ = ["Idris Hayward"]
 __license__ = "GNU General Public License v3.0"
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Idris Hayward"
 __email__ = "j.d.hayward@surrey.ac.uk"
 __status__ = "Indev"
 
 import argparse
 import json
+import datetime
+import pandas
 
 from modules.idristools import fancy_print, debug_stats, get_json
 from modules.idristools import unread_files, append_to_file
@@ -71,6 +73,8 @@ if __name__ == "__main__":
             )
     args = vars(arg_parser.parse_args())
     config_path = args["config"]
+    meta_path = args["metadata"]
+    para_path = args["parameters"]
 
     # Opening blurb
     fancy_print("", form="LINE")
@@ -91,14 +95,60 @@ if __name__ == "__main__":
         debug_stats(config_json)
     fancy_print("", form="LINE")
 
+    # Import metadata json and parameter csv
+    fancy_print("Importing metadata files", end="\r", flush=True)
+    meta_json = get_json(meta_path)
+    para_csv = pd.read_csv(
+            filepath_or_buffer=para_path,
+            usecols=[0, 1, 2]
+            )
+    fancy_print("Metadata imported")
+    fancy_print("", form="LINE")
+
     # Main loop
     for car in config_json["Settings"]["Cars"]:
+        airview = AirView(car, meta_json, para_csv)
         fancy_print(f"Importing measurements from {car}")
         files_path = f"{config_json['Settings']['File Path']}/{car}/"
         files_dict = unread_files(files_path, f"{car}.txt", return_stats=True)
         fancy_print(f"{files_dict['Total Files']} available")
         fancy_print(f"{files_dict['Read Files']} already read")
+        prev_file_date = dt.datetime(1970, 1, 1, 0, 0, 0)
+        t_start = dt.datetime.now()
         for airview_file in files_dict["Unread File List"]:
-            pass
+            file_date_string = airview_file[14:]
+            file_date = dt.datetime.strptime("%Y-%m-%d_%H-%M-%S")
+            file_date.replace(minute=0, second=0, microsecond=0)
+            if file_date != prev_file_date and len(airview.measurements) > 0:
+                fancy_print(
+                        f"Uploading measurements for " \
+                        f"{prev_file_date.strftime('%Y-%m-%d')}",
+                        end="\r", flush=True
+                        )
+                measurements_to_send = airview.get_measurements()
+                # Influx here
+                print(*measurements_to_send, sep="\n")
+                finish_time = (dt.datetime.now() - t_start).seconds
+                fancy_print(
+                        f"Measurements for " \
+                        f"{prev_file_date.strftime('%Y-%m-%d')} uploaded " \
+                        f"({finish_time} seconds) " \
+                        f"[{len(measurements_to_send)} measurements]"
+                        )
+                airview.clear_measurements()
+                t_start = dt.datetime.now()
+            fancy_print(f"Reading {airview_file}", end="\r", flush=True)
+            airview.read_file(f"{files_path}{airview_file}")
+        fancy_print(f"Uploading final measurements for {car}", 
+                end="\r", flush=True
+                )
+        measurements_to_send = airview.get_measurements()
+        # Influx here
+        airview.clear_measurements()
+        fancy_print(f"Final measurements for {car} uploaded")
+        fancy_print("", form="LINE")
+
+
+
         
 

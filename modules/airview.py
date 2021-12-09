@@ -16,7 +16,7 @@ __author__ = "Idris Hayward"
 __copyright__ = "2021, University of Surrey & National Physical Laboratory"
 __credits__ = ["Idris Hayward"]
 __license__ = "GNU General Public License v3.0"
-__version__ = "0.2"
+__version__ = "0.3"
 __maintainer__ = "Idris Hayward"
 __email__ = "j.d.hayward@surrey.ac.uk"
 __status__ = "Alpha"
@@ -135,7 +135,10 @@ class AirView:
                 separator = ", "
         self.data_container["tags"][f"{instrument} Status"] = status_string
 
-        def clear_measurement_list(self):
+        def get_measurements(self):
+            return self.measurements
+
+        def clear_measurements(self):
             self.measurements = list()
 
 
