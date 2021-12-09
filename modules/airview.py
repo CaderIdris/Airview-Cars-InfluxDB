@@ -80,7 +80,6 @@ class AirView:
         file_data["Datetime"] = pd.to_datetime(
                 file_data["Datetime"],
                 format="%Y-%m-%d_%H-%M-%S.%f",
-                unit="us"
                 )
 
 
