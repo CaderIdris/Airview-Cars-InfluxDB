@@ -77,10 +77,12 @@ class AirView:
                 on_bad_lines='skip',
                 )
         file_data = file_data_raw.drop_duplicates()
-        file_data["Datetime"] = pd.to_pydatetime(
-            file_data["Datetime"],
-            format="%Y-%m-%d_%H-%M-%S.%f"
-            )
+        file_data["Datetime"] = pd.to_datetime(
+                file_data["Datetime"],
+                format="%Y-%m-%d_%H-%M-%S.%f",
+                unit="us"
+                )
+
 
         # Read csv 
         for index, row in file_data.iterrows:
@@ -89,7 +91,7 @@ class AirView:
                     self.measurements.append(self.data_container)
                 self.data_container = {
                         "measurement": "AirView",
-                        "time": row["Datetime"],
+                        "time": dt.datetime(row["Datetime"]),
                         "fields": dict(),
                         "tags": {"Car": self.car}
                         }
