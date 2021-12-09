@@ -77,11 +77,11 @@ class AirView:
                 on_bad_lines='skip',
                 )
         file_data = file_data_raw.drop_duplicates()
-        file_data.loc[:,"Datetime"] = pd.to_datetime(
+        updated_datetime = list(pd.to_datetime(
                 file_data.loc[:,"Datetime"],
                 format="%Y-%m-%d_%H-%M-%S.%f",
-                )
-
+                ))
+        file_data = file_data.assign(**{"Datetime":updated_datetime})
 
         # Read csv 
         for index, row in file_data.iterrows():
@@ -96,13 +96,13 @@ class AirView:
                         }
                 try:
                     self.read_row(row)
-                except KeyError, IndexError:
+                except (KeyError, IndexError) as e:
                     pass
                 self.previous_date = row["Datetime"]
             else:
                 try:
                     self.read_row(row)
-                except KeyError, IndexError:
+                except (KeyError, IndexError) as e:
                     pass
         self.measurements.append(self.data_container)
 
