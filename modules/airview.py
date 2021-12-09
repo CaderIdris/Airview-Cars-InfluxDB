@@ -94,10 +94,16 @@ class AirView:
                         "fields": dict(),
                         "tags": {"Car": self.car}
                         }
-                self.read_row(row)
+                try:
+                    self.read_row(row)
+                except KeyError, IndexError:
+                    pass
                 self.previous_date = row["Datetime"]
             else:
-                self.read_row(row)
+                try:
+                    self.read_row(row)
+                except KeyError, IndexError:
+                    pass
         self.measurements.append(self.data_container)
 
     def read_row(self, row):
@@ -115,7 +121,7 @@ class AirView:
     def read_status(self, raw_code, instrument, number):
         status_string = ""
         separator = ""
-        if int(number) <= 6:
+        if len(number) <= 6 and len(raw_code) == 8:
             # The trigger bit corresponds to whatever bit corresponds to a
             # particular status code e.g if the 16th bit of instrument 1's
             # status code is 1, that means there is a sensor flow error.
@@ -130,7 +136,7 @@ class AirView:
                         separator = ", "
             if status_string == "":
                 status_string = "5x5"
-        elif int(number) == 7:
+        elif int(number) == 7 and len(raw_code) == 5:
             status_data = self.metadata["Status"]["5 Digit Quinary"][number]
             for quit in list(status_data.keys()):
                 status_string = f"{status_string}{separator}{status_data[quit][raw_code[int(quit)]]}"

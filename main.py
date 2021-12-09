@@ -25,10 +25,10 @@ __author__ = "Idris Hayward"
 __copyright__ = "2021, University of Surrey & National Physical Laboratory"
 __credits__ = ["Idris Hayward"]
 __license__ = "GNU General Public License v3.0"
-__version__ = "0.2"
+__version__ = "0.4"
 __maintainer__ = "Idris Hayward"
 __email__ = "j.d.hayward@surrey.ac.uk"
-__status__ = "Indev"
+__status__ = "Beta"
 
 import argparse
 import json
@@ -106,6 +106,12 @@ if __name__ == "__main__":
     fancy_print("Metadata imported")
     fancy_print("", form="LINE")
 
+    # Connect to influx
+    fancy_print("Connecting to InfluxDB database")
+    influx_writer = InfluxWriter(config_json["Influx"])
+    fancy_print("Connected")
+    fancy_print("", form="LINE")
+
     # Main loop
     for car in config_json["Settings"]["Cars"]:
         airview = AirView(car, meta_json, para_csv)
@@ -129,17 +135,17 @@ if __name__ == "__main__":
             if file_date != prev_file_date and len(airview.measurements) > 0:
                 fancy_print(
                         f"Uploading measurements for " \
-                        f"{prev_file_date.strftime('%Y-%m-%d')}",
+                                f"{prev_file_date.strftime('%Y-%m-%d %H-%M-%S')}",
                         end="\r", flush=True
                         )
                 measurements_to_send = airview.get_measurements()
-                # Influx here
                 # print(*measurements_to_send, sep="\n")
+                influx_writer.write_container_list(measurements_to_send)
                 finish_time = (dt.datetime.now() - t_start).seconds
                 fancy_print(
                         f"Measurements for " \
-                        f"{prev_file_date.strftime('%Y-%m-%d')} uploaded " \
-                        f"({finish_time} seconds) " \
+                        f"{prev_file_date.strftime('%Y-%m-%d %H-%M-%S')} " \
+                        f"uploaded ({finish_time} seconds) " \
                         f"[{len(measurements_to_send)} measurements]"
                         )
                 airview.clear_measurements()
@@ -151,7 +157,7 @@ if __name__ == "__main__":
                 end="\r", flush=True
                 )
         measurements_to_send = airview.get_measurements()
-        # Influx here
+        influx_writer.write_container_list(measurements_to_send)
         airview.clear_measurements()
         fancy_print(f"Final measurements for {car} uploaded")
         fancy_print("", form="LINE")
