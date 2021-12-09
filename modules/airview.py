@@ -123,7 +123,7 @@ class AirView:
             trigger_bit = status_data["Trigger"]
             code = f"{int(raw_code, 16):0>32b}"[::-1]
             for bit, status in list(status_data.items()):
-                if bit is not 'Trigger':
+                if bit != 'Trigger':
                     if code[int(bit)] == trigger_bit:
                         status_string = f"{status_string}{separator}{status}"
                         separator = ", "
