@@ -99,7 +99,7 @@ if __name__ == "__main__":
     fancy_print("Importing metadata files", end="\r", flush=True)
     meta_json = get_json(meta_path)
     para_csv = pd.read_csv(
-            headers=None,
+            header=None,
             filepath_or_buffer=para_path,
             usecols=[0, 1, 2]
             )
