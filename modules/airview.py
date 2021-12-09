@@ -84,7 +84,7 @@ class AirView:
 
 
         # Read csv 
-        for index, row in file_data.iterrows:
+        for index, row in file_data.iterrows():
             if self.previous_date != row["Datetime"]:
                 if self.data_container is not None:
                     self.measurements.append(self.data_container)
