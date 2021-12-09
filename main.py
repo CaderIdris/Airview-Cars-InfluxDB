@@ -117,7 +117,10 @@ if __name__ == "__main__":
         t_start = dt.datetime.now()
         for airview_file in files_dict["Unread File List"]:
             file_date_string = airview_file[14:]
-            file_date = dt.datetime.strptime("%Y-%m-%d_%H-%M-%S")
+            file_date = dt.datetime.strptime(
+                    file_date_string, 
+                    "%Y-%m-%d_%H-%M-%S"
+                    )
             file_date.replace(minute=0, second=0, microsecond=0)
             if file_date != prev_file_date and len(airview.measurements) > 0:
                 fancy_print(
