@@ -90,7 +90,7 @@ class AirView:
                     self.measurements.append(self.data_container)
                 self.data_container = {
                         "measurement": "AirView",
-                        "time": dt.datetime(row["Datetime"]),
+                        "time": row["Datetime"],
                         "fields": dict(),
                         "tags": {"Car": self.car}
                         }
