@@ -100,7 +100,7 @@ class AirView:
         self.measurements.append(self.data_container)
 
     def read_row(self, row):
-        instrument_number = int(str(row["Device"]).split(":")[1])
+        instrument_number = str(row["Device"]).split(":")[1]
         instrument_name = self.metadata["Devices"][instrument_number]
         measurement = str(self.parameters.iloc[int(row["Parameter ID"]) - 1, 1])
         units = str(self.parameters.iloc[int(row["Parameter ID"]) - 1, 2])
@@ -108,13 +108,13 @@ class AirView:
         self.data_container["fields"][measurement_name] = float(
                 row["Measurement"]
                 )
-        if instrument_number <= 7:
+        if int(instrument_number) <= 7:
             self.read_status(row["Status"], instrument_name, instrument_number)
 
     def read_status(self, raw_code, instrument, number):
         status_string = ""
         separator = ""
-        if number <= 6:
+        if int(number) <= 6:
             # The trigger bit corresponds to whatever bit corresponds to a
             # particular status code e.g if the 16th bit of instrument 1's
             # status code is 1, that means there is a sensor flow error.
@@ -129,7 +129,7 @@ class AirView:
                         separator = ", "
             if status_string == "":
                 status_string = "5x5"
-        elif number == 7:
+        elif int(number) == 7:
             status_data = self.metadata["Status"]["5 Digit Quinary"][number]
             for quit in list(status_data.keys()):
                 status_string = f"{status_string}{separator}{status_data[quit][raw_code[quit]]}"
