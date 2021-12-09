@@ -134,7 +134,7 @@ if __name__ == "__main__":
                         )
                 measurements_to_send = airview.get_measurements()
                 # Influx here
-                print(*measurements_to_send, sep="\n")
+                # print(*measurements_to_send, sep="\n")
                 finish_time = (dt.datetime.now() - t_start).seconds
                 fancy_print(
                         f"Measurements for " \
