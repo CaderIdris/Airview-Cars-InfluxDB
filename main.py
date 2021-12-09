@@ -143,6 +143,7 @@ if __name__ == "__main__":
                 t_start = dt.datetime.now()
             fancy_print(f"Reading {airview_file}", end="\r", flush=True)
             airview.read_file(f"{files_path}{airview_file}")
+            prev_file_date = file_date
         fancy_print(f"Uploading final measurements for {car}", 
                 end="\r", flush=True
                 )
