@@ -32,8 +32,8 @@ __status__ = "Indev"
 
 import argparse
 import json
-import datetime
-import pandas
+import datetime as dt
+import pandas as pd
 
 from modules.idristools import fancy_print, debug_stats, get_json
 from modules.idristools import unread_files, append_to_file
