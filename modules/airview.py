@@ -77,8 +77,8 @@ class AirView:
                 on_bad_lines='skip',
                 )
         file_data = file_data_raw.drop_duplicates()
-        file_data["Datetime"] = pd.to_datetime(
-                file_data["Datetime"],
+        file_data.loc[:,"Datetime"] = pd.to_datetime(
+                file_data.loc[:,"Datetime"],
                 format="%Y-%m-%d_%H-%M-%S.%f",
                 )
 
