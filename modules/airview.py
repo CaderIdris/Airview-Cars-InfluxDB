@@ -116,7 +116,7 @@ class AirView:
                 row["Measurement"]
                 )
         if int(instrument_number) <= 7:
-            self.read_status(row["Status"], instrument_name, instrument_number)
+            self.read_status(str(row["Status"]), instrument_name, instrument_number)
 
     def read_status(self, raw_code, instrument, number):
         status_string = ""
