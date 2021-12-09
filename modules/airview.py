@@ -136,9 +136,9 @@ class AirView:
                 separator = ", "
         self.data_container["tags"][f"{instrument} Status"] = status_string
 
-        def get_measurements(self):
-            return self.measurements
+    def get_measurements(self):
+        return self.measurements
 
-        def clear_measurements(self):
-            self.measurements = list()
+    def clear_measurements(self):
+        self.measurements = list()
 
