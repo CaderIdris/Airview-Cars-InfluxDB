@@ -159,6 +159,7 @@ if __name__ == "__main__":
                             f"{airview_file}\n",
                             f"{config_json['Settings']['File Path']}/{car}.txt"
                             )
+                files_processed = list()
                 t_start = dt.datetime.now()
             fancy_print(f"Reading {airview_file}", end="\r", flush=True)
             airview.read_file(f"{files_path}{airview_file}")
@@ -172,8 +173,4 @@ if __name__ == "__main__":
         airview.clear_measurements()
         fancy_print(f"Final measurements for {car} uploaded")
         fancy_print("", form="LINE")
-
-
-
-        
 
