@@ -121,7 +121,7 @@ class AirView:
             # The trigger bit is 0 for some instruments and 1 for others.
             status_data = self.metadata["Status"]["8 Nibble Hex"][number]
             trigger_bit = status_data["Trigger"]
-            code = f"{int(status, 16):0>32b}"[::-1]
+            code = f"{int(raw_code, 16):0>32b}"[::-1]
             for bit, status in list(status_data.items()):
                 if bit is not 'Trigger':
                     if code[int(bit)] == trigger_bit:
