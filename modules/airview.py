@@ -132,7 +132,7 @@ class AirView:
         elif int(number) == 7:
             status_data = self.metadata["Status"]["5 Digit Quinary"][number]
             for quit in list(status_data.keys()):
-                status_string = f"{status_string}{separator}{status_data[quit][raw_code[quit]]}"
+                status_string = f"{status_string}{separator}{status_data[quit][raw_code[int(quit)]]}"
                 separator = ", "
         self.data_container["tags"][f"{instrument} Status"] = status_string
 
