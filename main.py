@@ -140,7 +140,7 @@ if __name__ == "__main__":
             if file_date != prev_file_date and len(airview.measurements) > 0:
                 fancy_print(
                         f"Uploading measurements for " \
-                                f"{prev_file_date.strftime('%Y-%m-%d %H-%M-%S')}",
+                                f"{prev_file_date.strftime('%Y-%m-%d %H:%M:%S')}",
                         end="\r", flush=True
                         )
                 measurements_to_send = airview.get_measurements()
@@ -149,14 +149,14 @@ if __name__ == "__main__":
                 finish_time = (dt.datetime.now() - t_start).seconds
                 fancy_print(
                         f"Measurements for " \
-                        f"{prev_file_date.strftime('%Y-%m-%d %H-%M-%S')} " \
+                        f"{prev_file_date.strftime('%Y-%m-%d %H:%M:%S')} " \
                         f"uploaded ({finish_time} seconds) " \
                         f"[{len(measurements_to_send)} measurements]"
                         )
                 airview.clear_measurements()
                 for processed_file in files_processed:
                     append_to_file(
-                            f"{airview_file}\n",
+                            f"{processed_file}",
                             f"{config_json['Settings']['File Path']}/{car}.txt"
                             )
                 files_processed = list()
