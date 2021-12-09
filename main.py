@@ -114,10 +114,15 @@ if __name__ == "__main__":
 
     # Main loop
     for car in config_json["Settings"]["Cars"]:
+        files_processed = list()
         airview = AirView(car, meta_json, para_csv)
         fancy_print(f"Importing measurements from {car}")
         files_path = f"{config_json['Settings']['File Path']}/{car}/"
-        files_dict = unread_files(files_path, f"{car}.txt", return_stats=True)
+        files_dict = unread_files(
+                files_path,
+                f"{config_json['Settings']['File Path']}/{car}.txt",
+                return_stats=True
+                )
         fancy_print(f"{files_dict['Total Files']} available")
         fancy_print(f"{files_dict['Read Files']} already read")
         prev_file_date = dt.datetime(1970, 1, 1, 0, 0, 0)
@@ -149,10 +154,16 @@ if __name__ == "__main__":
                         f"[{len(measurements_to_send)} measurements]"
                         )
                 airview.clear_measurements()
+                for processed_file in files_processed:
+                    append_to_file(
+                            f"{airview_file}\n",
+                            f"{config_json['Settings']['File Path']}/{car}.txt"
+                            )
                 t_start = dt.datetime.now()
             fancy_print(f"Reading {airview_file}", end="\r", flush=True)
             airview.read_file(f"{files_path}{airview_file}")
             prev_file_date = file_date
+            files_processed.append(airview_file)
         fancy_print(f"Uploading final measurements for {car}", 
                 end="\r", flush=True
                 )
