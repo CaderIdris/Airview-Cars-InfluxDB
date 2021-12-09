@@ -142,15 +142,3 @@ class AirView:
         def clear_measurements(self):
             self.measurements = list()
 
-
-            
-
-
-
-
-
-
-            
-
-        
-
