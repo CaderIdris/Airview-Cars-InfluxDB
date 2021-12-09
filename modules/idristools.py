@@ -202,7 +202,7 @@ def unread_files(path, read_list, return_stats=False):
     try:
         with open(read_list, "r") as read_files_txt:
             read_files = read_files_txt.readlines()
-            read_files = [line[:-1] for line in exported_files]
+            read_files = [line[:-1] for line in read_files]
     except FileNotFoundError:
         with open(read_list, "w") as read_files_txt:
                 read_files = list()
