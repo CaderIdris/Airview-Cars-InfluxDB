@@ -95,6 +95,7 @@ class AirView:
                         "tags": {"Car": self.car}
                         }
                 self.read_row(row)
+                self.previous_date = row["Datetime"]
             else:
                 self.read_row(row)
         self.measurements.append(self.data_container)
