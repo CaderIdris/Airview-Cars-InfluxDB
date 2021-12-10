@@ -141,7 +141,7 @@ class AirView:
             for quit in list(status_data.keys()):
                 status_string = f"{status_string}{separator}{status_data[quit][raw_code[int(quit)]]}"
                 separator = ", "
-        if status_string != "":
+        if status_string == "":
             status_string = "Unrecognised Status Code"
         self.data_container["tags"][f"{instrument} Status"] = status_string
 
