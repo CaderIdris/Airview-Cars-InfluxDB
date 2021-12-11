@@ -123,7 +123,7 @@ if __name__ == "__main__":
                 f"{config_json['Settings']['File Path']}/{car}.txt",
                 return_stats=True
                 )
-        unread_files = files_dict["Unread Files List"]
+        unread_files = files_dict["Unread File List"]
         fancy_print(f"{files_dict['Total Files']} available")
         fancy_print(f"{files_dict['Read Files']} already read")
         prev_file_date = dt.datetime(1970, 1, 1, 0, 0, 0)
