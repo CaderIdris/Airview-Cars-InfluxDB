@@ -123,11 +123,12 @@ if __name__ == "__main__":
                 f"{config_json['Settings']['File Path']}/{car}.txt",
                 return_stats=True
                 )
+        unread_files = files_dict["Unread Files List"]
         fancy_print(f"{files_dict['Total Files']} available")
         fancy_print(f"{files_dict['Read Files']} already read")
         prev_file_date = dt.datetime(1970, 1, 1, 0, 0, 0)
         t_start = dt.datetime.now()
-        for airview_file in files_dict["Unread File List"]:
+        for file_index, airview_file in enumerate(unread_files):
             file_date_string = airview_file[14:]
             try:
                 file_date = dt.datetime.strptime(
@@ -138,6 +139,7 @@ if __name__ == "__main__":
                 file_date = prev_file_date
             file_date = file_date.replace(minute=0, second=0, microsecond=0)
             if file_date != prev_file_date and len(airview.measurements) > 0:
+                files_left = len(unread_files) - (file_index + 1)
                 fancy_print(
                         f"Uploading measurements for " \
                                 f"{prev_file_date.strftime('%Y-%m-%d %H:%M:%S')}",
@@ -150,8 +152,9 @@ if __name__ == "__main__":
                 fancy_print(
                         f"Measurements for " \
                         f"{prev_file_date.strftime('%Y-%m-%d %H:%M:%S')} " \
-                        f"uploaded ({finish_time} seconds) " \
-                        f"[{len(measurements_to_send)} measurements]"
+                        f"uploaded ({finish_time} seconds, " \
+                        f"{len(measurements_to_send)} measurements, " \
+                        f"{files_left} remaining"
                         )
                 airview.clear_measurements()
                 for processed_file in files_processed:
