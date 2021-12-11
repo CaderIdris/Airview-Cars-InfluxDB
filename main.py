@@ -154,7 +154,7 @@ if __name__ == "__main__":
                         f"{prev_file_date.strftime('%Y-%m-%d %H:%M:%S')} " \
                         f"uploaded ({finish_time} seconds, " \
                         f"{len(measurements_to_send)} measurements, " \
-                        f"{files_left} remaining"
+                        f"{files_left} remaining)"
                         )
                 airview.clear_measurements()
                 for processed_file in files_processed:
