@@ -1,3 +1,32 @@
+""" Set of tools I find useful in all my programs
+
+This module contains functions I have found useful in other programs,
+previously I was copy and pasting them in to each program separately.
+
+    Methods:
+        fancy_print: Makes string output to the console look nicer
+
+        get_json: Finds json file and returns it as dict
+
+        save_to_file: Saves data to file in specified path
+
+        debug_stats: Prints out a json file/dictionary nicely
+
+        unread_files: Scans a directory for files and determines how many of
+        them have been read by the program previously
+
+        append_to_file: Appends a string to the end of a file
+"""
+
+__author__ = "Idris Hayward"
+__copyright__ = "2021, The University of Surrey & National Physical Laboratory"
+__credits__ = ["Idris Hayward"]
+__license__ = "GNU General Public License v3.0"
+__version__ = "1.0"
+__maintainer__ = "Idris Hayward"
+__email__ = "j.d.hayward@surrey.ac.uk"
+__status__ = "Stable Release"
+
 import os
 import json
 

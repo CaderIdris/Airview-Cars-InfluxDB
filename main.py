@@ -114,6 +114,7 @@ if __name__ == "__main__":
 
     # Main loop
     for car in config_json["Settings"]["Cars"]:
+        # Check which files need to be processed
         files_processed = list()
         airview = AirView(car, meta_json, para_csv)
         fancy_print(f"Importing measurements from {car}")
@@ -128,6 +129,7 @@ if __name__ == "__main__":
         fancy_print(f"{files_dict['Read Files']} already read")
         prev_file_date = dt.datetime(1970, 1, 1, 0, 0, 0)
         t_start = dt.datetime.now()
+        # Loop over all files which are yet to be processed
         for file_index, airview_file in enumerate(unread_files_list):
             file_date_string = airview_file[14:]
             try:
@@ -136,7 +138,14 @@ if __name__ == "__main__":
                         "%Y-%m-%d_%H-%M-%S"
                         )
             except ValueError:
+                # Skip if filename does not match a valid date i.e. MM = 99
                 file_date = prev_file_date
+            # file_date represents the date of the file, minus the minutes and
+            # seconds
+            # This is used to determine when an hour of measurements have been
+            # analysed
+            # Once an hour has elapsed the measurements are uploaded to the
+            # influxDB database and are cleared from memory
             file_date = file_date.replace(minute=0, second=0, microsecond=0)
             if file_date != prev_file_date and len(airview.measurements) > 0:
                 files_left = len(unread_files_list) - (file_index + 1)
@@ -158,6 +167,9 @@ if __name__ == "__main__":
                         )
                 airview.clear_measurements()
                 for processed_file in files_processed:
+                    # Appends the filenames to a text file once processed that
+                    # is read every time the program is run to determine which
+                    # files have already been uploaded
                     append_to_file(
                             f"{processed_file}",
                             f"{config_json['Settings']['File Path']}/{car}.txt"
