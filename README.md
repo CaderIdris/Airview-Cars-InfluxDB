@@ -27,6 +27,28 @@ Unofficial Python3 script that reads measurement files output by two AirView car
 
 ## Operational Procedure
 
+```
+# Clone this repository
+$ git clone https://github.com/CaderIdris/AirView-Cars-InfluxDB.git
+
+# Go in to repository
+$ cd AirView-Cars-InfluxDB
+
+# Setup the virtual environment
+$ ./venv_setup.sh
+
+# Configure settings.json with file path and InfluxDB configuration
+
+# Add auth token data to auth.json
+
+# Run software
+$ ./run.sh
+
+# Input date range to download data
+    Start Date: (YYYY-MM-DD)
+    End Date:   (YYYY-MM-DD)
+```
+
 ---
 
 ## Settings
